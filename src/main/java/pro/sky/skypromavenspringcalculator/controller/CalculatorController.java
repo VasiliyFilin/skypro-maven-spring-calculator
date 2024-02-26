@@ -24,33 +24,21 @@ public class CalculatorController {
     @GetMapping(path = "/plus")
     public String plus(@RequestParam(value = "num1") Integer num1,
                        @RequestParam(value = "num2") Integer num2) throws BadRequestException {
-        if (num1 == null || num2 == null) {
-            throw new BadRequestException();
-        }
         return num1 + " + " + num2 + " = " + calculatorService.plus(num1, num2);
     }
     @GetMapping(path = "/minus")
     public String minus(@RequestParam(value = "num1") Integer num1,
                         @RequestParam(value = "num2") Integer num2) throws BadRequestException {
-        if (num1 == null || num2 == null) {
-            throw new BadRequestException();
-        }
         return num1 + " - " + num2 + " = " + calculatorService.minus(num1, num2);
     }
     @GetMapping(path = "/multiply")
     public String multiply(@RequestParam(value = "num1") Integer num1,
                            @RequestParam(value = "num2") Integer num2) throws BadRequestException {
-        if (num1 == null || num2 == null) {
-            throw new BadRequestException();
-        }
         return num1 + " * " + num2 + " = " + calculatorService.multiply(num1, num2);
     }
     @GetMapping(path = "/divide")
     public String divide(@RequestParam(value = "num1") Integer num1,
                          @RequestParam(value = "num2") Integer num2) throws BadRequestException {
-        if (num1 == null || num2 == null) {
-            throw new BadRequestException();
-        }
         return num1 + " / " + num2 + " = " + calculatorService.divide(num1, num2);
     }
 

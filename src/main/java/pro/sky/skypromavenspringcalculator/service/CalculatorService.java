@@ -1,9 +1,11 @@
 package pro.sky.skypromavenspringcalculator.service;
 
+import org.apache.coyote.BadRequestException;
+
 public interface CalculatorService {
     String calculator();
-    int plus(int num1, int num2);
-    int minus(int num1, int num2);
-    int multiply(int num1, int num2);
-    int divide(int num1, int num2);
+    Integer plus(Integer num1, Integer num2) throws BadRequestException;
+    Integer minus(Integer num1, Integer num2) throws BadRequestException;
+    Integer multiply(Integer num1, Integer num2) throws BadRequestException;
+    Integer divide(Integer num1, Integer num2) throws BadRequestException;
 }

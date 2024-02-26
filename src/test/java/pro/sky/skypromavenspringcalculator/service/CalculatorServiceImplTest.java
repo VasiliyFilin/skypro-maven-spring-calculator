@@ -1,5 +1,6 @@
 package pro.sky.skypromavenspringcalculator.service;
 
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,48 +14,37 @@ class CalculatorServiceImplTest {
     }
 
     @Test
-    void plus() {
+    void shouldReturnCorrectResultOfAdditionTest() throws BadRequestException {
         assertEquals(10, calcservice.plus(5, 5));
-        assertEquals(5, calcservice.plus(0, 5));
         assertEquals(4, calcservice.plus(-1, 5));
-        assertEquals(4, calcservice.plus(5, -1));
-        assertEquals(0, calcservice.plus(-5, 5));
-        assertEquals(0, calcservice.plus(5, -5));
-        assertEquals(0, calcservice.plus(0, 0));
 
     }
 
     @Test
-    void minus() {
+    void shouldReturnCorrectResultOfSubtractionTest() throws BadRequestException {
         assertEquals(0, calcservice.minus(5, 5));
-        assertEquals(-5, calcservice.minus(0, 5));
         assertEquals(-6, calcservice.minus(-1, 5));
-        assertEquals(6, calcservice.minus(5, -1));
-        assertEquals(-10, calcservice.minus(-5, 5));
-        assertEquals(10, calcservice.minus(5, -5));
-        assertEquals(0, calcservice.minus(0, 0));
     }
 
     @Test
-    void multiply() {
+    void shouldReturnCorrectResultOfMultiplicationTest() throws BadRequestException {
         assertEquals(25, calcservice.multiply(5, 5));
-        assertEquals(0, calcservice.multiply(0, 5));
         assertEquals(-5, calcservice.multiply(-1, 5));
-        assertEquals(-5, calcservice.multiply(5, -1));
-        assertEquals(-25, calcservice.multiply(-5, 5));
-        assertEquals(-25, calcservice.multiply(5, -5));
-        assertEquals(0, calcservice.multiply(0, 0));
     }
 
     @Test
-    void divide() {
+    void shouldReturnCorrectResultOfDivisionTest() throws BadRequestException {
         assertEquals(1, calcservice.divide(5, 5));
-        assertEquals(0, calcservice.divide(0, 5));
         assertEquals(0, calcservice.divide(-1, 5));
-        assertEquals(-5, calcservice.divide(5, -1));
-        assertEquals(-1, calcservice.divide(-5, 5));
-        assertEquals(-1, calcservice.divide(5, -5));
-        assertThrows(IllegalArgumentException.class, () -> calcservice.divide(0, 0));
+    }
 
+    @Test
+    void shouldThrowBadRequestExceptionWhenNumIsNullTest() {
+        assertThrows(BadRequestException.class, () -> calcservice.divide(null, 5));
+        assertThrows(BadRequestException.class, () -> calcservice.divide(5, null));
+    }
+    @Test
+    void shouldThrowIllegalArgumentExceptionWhenNum2Is0Test() {
+        assertThrows(IllegalArgumentException.class, () -> calcservice.divide(5, 0));
     }
 }

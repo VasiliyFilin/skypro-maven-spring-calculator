@@ -1,5 +1,6 @@
 package pro.sky.skypromavenspringcalculator.service;
 
+import org.apache.coyote.BadRequestException;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,25 +26,25 @@ class CalculatorServiceImplParamTest {
 
     @ParameterizedTest
     @MethodSource("args")
-    void plus(int num1, int num2) {
+    void shouldReturnCorrectResultOfAdditionTest(int num1, int num2) throws BadRequestException {
         assertEquals(num1 + num2, calcservice.plus(num1, num2));
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    void minus(int num1, int num2) {
+    void shouldReturnCorrectResultOfSubtractionTest(int num1, int num2) throws BadRequestException {
         assertEquals(num1 - num2, calcservice.minus(num1, num2));
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    void multiply(int num1, int num2) {
+    void shouldReturnCorrectResultOfMultiplicationTest(int num1, int num2) throws BadRequestException {
         assertEquals(num1 * num2, calcservice.multiply(num1, num2));
     }
 
     @ParameterizedTest
     @MethodSource("args")
-    void divide(int num1, int num2) {
+    void shouldReturnCorrectResultOfDivisionTest(int num1, int num2) throws BadRequestException {
         if (num2 == 0) {
             assertThrows(IllegalArgumentException.class, () -> calcservice.divide(num1, num2));
             return;
